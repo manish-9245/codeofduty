@@ -8,7 +8,12 @@ import {
   StatLabel,
   StatNumber,
   useColorModeValue,
-  Image
+  ChakraProvider,
+  Container,
+  Stack,
+  Image,
+  Divider,
+  theme
 } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import { BsPerson } from "react-icons/bs";
@@ -16,7 +21,7 @@ import { FiServer } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { useEffect, useState } from "react";
 import { endpoint } from "../endpoint";
-
+import Fileupload from "./fileupload";
 interface StatsCardProps {
   title: string;
   stat: string;
@@ -79,13 +84,34 @@ export default function BasicStatistics() {
   }, []);
 
   return (
-    <div>
-    <Image src={`http://localhost:8000/${qr.image}`}></Image>
-    <Box maxW="7xl" mx={"auto"} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
+    <ChakraProvider theme={theme}>
+      {/* {redirect && <Redirect to="/" />} */}
+      <Container maxW={'7xl'}>
+        <SimpleGrid
+          columns={{ base: 1, lg: 2 }}
+          spacing={{ base: 8, md: 10 }}
+          py={{ base: 12, md: 24 }}
+        >
+          <Flex>
+            {present && <Image
+              rounded={'md'}
+              alt={'product image'}
+              src={`http://localhost:8000/${qr.image}`}
+              fit={'cover'}
+              align={'left'}
+              w={'100%'}
+              h={{ base: '100%', sm: '400px', lg: '500px' }}
+            />}
+          </Flex>
+          <Stack spacing={{ base: 5, md: 10 }}>
+          <Fileupload />
+          </Stack>
+        </SimpleGrid>
+        <Box maxW="7xl" mx={"auto"} pt={6} px={{ base: 2, sm: 12, md: 17 }}>
       <chakra.h1
         textAlign={"center"}
         fontSize={"4xl"}
-        py={10}
+        py={12}
         fontWeight={"bold"}
       >
         File List
@@ -94,17 +120,17 @@ export default function BasicStatistics() {
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
         {present &&
           folders.map((files:any, index) => {
-
-           return <Link href="https://chakra-ui.com/docs/components" isExternal>
+           return <Link href={`http://localhost:3000/file/${files.id}`} isExternal>
               <StatsCard
                 title={files.document_name}
                 stat={""}
-                icon={<FiServer size={"3em"} />}
+                icon={<FiServer size={"1em"} />}
               />
             </Link>
           })}
       </SimpleGrid>
     </Box>
-    </div>
+      </Container>
+    </ChakraProvider>
   );
 }

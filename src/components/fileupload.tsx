@@ -16,7 +16,7 @@ import {
   export default function Fileupload() {
     return (
       <Flex
-        minH={'100vh'}
+        minH={'10vh'}
         align={'center'}
         justify={'center'}
         bg={useColorModeValue('gray.50', 'gray.800')}>
