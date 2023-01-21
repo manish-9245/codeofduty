@@ -18,6 +18,7 @@ import CallToActionWithAnnotation from "./components/hero";
 import WithSubnavigation from "./components/navbar";
 import SimpleCard from "./components/login";
 import BasicStatistics from "./components/filelist";
+import Public from "./components/public";
 import Fileupload from "./components/fileupload";
 export const App = () => (
   <ChakraProvider theme={theme}>
@@ -26,6 +27,7 @@ export const App = () => (
     {/* <CallToActionWithAnnotation  /> */}
     <Router>
       <Switch>
+        <Route path="/file/:id" component={Public} />
         <Route path="/login" component={SimpleCard} />
         <Route path="/register" component={Multistep} />
         <Route path="/dashboard" component={BasicStatistics} />
