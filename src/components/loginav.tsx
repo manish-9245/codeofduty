@@ -22,7 +22,7 @@ import {
     ChevronRightIcon,
   } from '@chakra-ui/icons';
   
-  export default function WithSubnavigation() {
+  export default function Loginav() {
     const { isOpen, onToggle } = useDisclosure();
   
     return (
@@ -73,20 +73,8 @@ import {
               fontSize={'sm'}
               fontWeight={400}
               variant={'link'}
-              href={'/reg'}>
-              Sign In
-            </Button>
-            <Button
-              display={{ base: 'none', md: 'inline-flex' }}
-              fontSize={'sm'}
-              fontWeight={600}
-              color={'white'}
-              bg={'pink.400'}
-              href={'#'}
-              _hover={{
-                bg: 'pink.300',
-              }}>
-              Sign Up
+              href={'/'}>
+              Logout
             </Button>
           </Stack>
         </Flex>

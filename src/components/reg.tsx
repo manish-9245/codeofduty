@@ -49,12 +49,42 @@ export default function Multistep() {
     ],
   });
 
+  const [focus, setFocus] = useState({
+    firstName: false,
+    lastName: false,
+    username: false,
+    email: false,
+    password: false,
+    blood_group: false,
+    gender: false,
+    height: false,
+    weight: false,
+    allergies: false,
+    dob: false,
+  })
+
+  const [previousFocus, setPreviousFocus] = useState("")
+
   const handleChange = (e: any) => {
+    if (e.target.name == previousFocus){
+      setFocus({
+        ...focus,
+        [e.target.name]: true,
+      })
+    }
+    else{
+      setFocus({
+        ...focus,
+        [e.target.name]: true,
+        [previousFocus]: false
+      })
+    }
+    setPreviousFocus(e.target.name)
+    
     setData({
       ...data,
       [e.target.name]: e.target.value,
     });
-  
   };
 
   const Form1 = () => {
@@ -66,7 +96,7 @@ export default function Multistep() {
           User Registration
         </Heading>
         <Flex>
-          <FormControl mr="5%">
+          <FormControl mr="5%" id="first-name">
             <FormLabel htmlFor="first-name" fontWeight={"normal"}>
               First Name
             </FormLabel>
@@ -76,20 +106,21 @@ export default function Multistep() {
               value={data.firstName}
               onChange={handleChange}
               placeholder="First Name"
+              autoFocus={focus.firstName}
             />
           </FormControl>
-          <FormControl>
+          <FormControl id="last-name">
             <FormLabel htmlFor="last-name" fontWeight={"normal"}>
               Last name
             </FormLabel>
-            <Input id="last-name" name="lastName" value={data.lastName} onChange={handleChange} placeholder="Last name"  />
+            <Input id="last-name" type="text" name="lastName" value={data.lastName} onChange={handleChange} placeholder="Last name" autoFocus={focus.lastName}  />
           </FormControl>
         </Flex>
         <FormControl mt="2%">
           <FormLabel htmlFor="email" fontWeight={"normal"}>
             Email address
           </FormLabel>
-          <Input id="email" name="email" value={data.email} onChange={handleChange} type="email" />
+          <Input id="email" name="email" value={data.email} onChange={handleChange} type="email" autoFocus={focus.email} />
           <FormHelperText>We'll never share your email.</FormHelperText>
         </FormControl>
 
@@ -105,6 +136,7 @@ export default function Multistep() {
               name="password"
               value={data.password}
               onChange={handleChange}
+              autoFocus={focus.password}
             />
             <InputRightElement width="4.5rem">
               <Button h="1.75rem" size="sm" onClick={handleClick}>
@@ -124,7 +156,7 @@ export default function Multistep() {
         </Heading>
         <FormControl as={GridItem} colSpan={[6, 3]}>
           <FormLabel
-            htmlFor="country"
+            htmlFor="blood_group"
             fontSize="sm"
             fontWeight="md"
             color="gray.700"
@@ -135,15 +167,16 @@ export default function Multistep() {
             Blood Group
           </FormLabel>
           <Select
-            id="country"
-            name="country"
-            autoComplete="country"
+            id="blood_group"
+            name="blood_group"
+            autoComplete="blood_group"
             placeholder="Select option"
             focusBorderColor="brand.400"
             shadow="sm"
             size="sm"
             w="full"
             rounded="md"
+            onChange={handleChange}
           >
             <option>A +ve</option>
             <option>A -ve</option>

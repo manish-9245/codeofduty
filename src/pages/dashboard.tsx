@@ -13,9 +13,10 @@ import {
   theme,
   useToast,
 } from "@chakra-ui/react";
+import Loginav from "../components/loginav";
 export const dash = () => (
   <>
-    <WithSubnavigation />
+    <Loginav />
     <StatsCard />
     <Fileupload />
   </>
