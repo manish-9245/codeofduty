@@ -1,7 +1,7 @@
-import StatsCard from "../components/filelist"
-import Fileupload from "../components/fileupload"
-import WithSubnavigation from "../components/navbar"
-import * as React from "react"
+import StatsCard from "../components/filelist";
+import Fileupload from "../components/fileupload";
+import WithSubnavigation from "../components/navbar";
+import * as React from "react";
 import {
   ChakraProvider,
   Box,
@@ -11,8 +11,12 @@ import {
   Code,
   Grid,
   theme,
-  useToast
-} from "@chakra-ui/react"
+  useToast,
+} from "@chakra-ui/react";
 export const dash = () => (
-        <><WithSubnavigation /><Fileupload /><StatsCard /></>
-)
+  <>
+    <WithSubnavigation />
+    <StatsCard />
+    <Fileupload />
+  </>
+);
