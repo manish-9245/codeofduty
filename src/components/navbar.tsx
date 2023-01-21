@@ -77,12 +77,14 @@ import {
               Sign In
             </Button>
             <Button
+              as={'a'}
               display={{ base: 'none', md: 'inline-flex' }}
               fontSize={'sm'}
               fontWeight={600}
               color={'white'}
               bg={'pink.400'}
-              href={'#'}
+              variant={'link'}
+              href ={'/register'}
               _hover={{
                 bg: 'pink.300',
               }}>
