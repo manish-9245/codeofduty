@@ -1,4 +1,5 @@
 import * as React from "react"
+import WithSubnavigation from "../components/navbar"
 import {
   ChakraProvider,
   Box,
@@ -15,6 +16,7 @@ import Multistep from "../components/reg"
 
 export const App = () => (
   <ChakraProvider theme={theme}>
+    <WithSubnavigation />
         <Multistep   />
   </ChakraProvider>
 )
