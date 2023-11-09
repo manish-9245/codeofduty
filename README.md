@@ -1,1 +1,1 @@
-# codeofduty
+Frontend for WIE Code
